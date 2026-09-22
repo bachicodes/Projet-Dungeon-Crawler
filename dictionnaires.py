@@ -1,6 +1,6 @@
 import random
 
-liste_fleches = [(400,560),(0,280),(400,0),(900,280)]
+liste_fleches = [(450,560),(0,280),(450,0),(900,280)]
 
 nb = random.randint(1,100)
 if nb == 1:
