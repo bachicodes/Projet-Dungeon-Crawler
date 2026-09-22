@@ -2,15 +2,17 @@ from dictionnaires import *
 
 def deplacement(x,y,pile):
     for i in range(4):
-        if x >= liste_fleches[i][0] and x <= (liste_fleches[i][0]+80) and y >= liste_fleches[i][1] and y <= (liste_fleches[i][0]+30):
+
+        if x >= liste_fleches[i][0] and x <= (liste_fleches[i][0]+100) and y >= liste_fleches[i][1] and y <= (liste_fleches[i][1]+40):
             if donjon[pile[-1]]["sorties"][i] != None:
+                print(i)
                 pile.append(donjon[pile[-1]]["sorties"][i])
-                print(pile)
                 return pile
-    if x >= 0 and x <= 80 and y >= 0 and y <= 30:
+    if x >= 0 and x <= 100 and y >= 0 and y <= 40:
         if len(pile) > 1:
             pile.pop()
             return pile
+    return pile
 
 def prendre_degats(degats):
     perso["pv"] = perso["pv"] - degats//perso["def"]

@@ -1,6 +1,6 @@
 import random
 
-liste_fleches = [(460,570),(0,285),(460,0),(920,285)]
+liste_fleches = [(400,560),(0,280),(400,0),(900,280)]
 
 nb = random.randint(1,100)
 if nb == 1:
@@ -41,7 +41,7 @@ donjon = {
 
     "chambre" : {
         "nom" : "Chambre",
-        "sorties" : ["escaliers", None, "salle de bain", None],
+        "sorties" : ["escaliers", None, "salle_de_bain", None],
         "objet" : "cle",
         "monstre" : "gobelins",
     },
