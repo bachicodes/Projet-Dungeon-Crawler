@@ -1,15 +1,14 @@
-import random
+import random #importe le module random
 
-liste_fleches = [(450,560),(0,280),(450,0),(900,280)]
+liste_fleches = [(450,560),(0,280),(450,0),(900,280)] #liste des coordonnees de chaque bouton
 
-nb = random.randint(1,100)
+nb = random.randint(1,100) # 1 chance sur 100 d'avoir un bâton spécial
 if nb == 1:
     baton = "le_baton"
-
 else:
     baton = "baton"
 
-nb = random.randint(1,6)
+nb = random.randint(1,6) # choisis quel armure on obtient après le combat contre le squelette
 if nb <= 1:
     armure = "armure_1"
 elif nb <= 5:
@@ -18,6 +17,12 @@ else:
     armure = "armure_3"
 
 donjon = {
+    #Range chaque salle avec:
+    #- nom
+    #- une liste de sorties correspondant aux boutons
+    #- l'objet de la salle si il y en a un
+    #- le monstre de la salle si il y en a un
+
     "entree" : {
         "nom" : "Entrée",
         "sorties" : [None,"armurerie","hall",None],
@@ -83,11 +88,12 @@ donjon = {
 }
 
 
-nom = input("Quel est votre nom ?")
 
 
 base = {
-    "nom" : nom,
+    
+    #crée la structure du joueur : nom, pv, expérience, et autres types de statistiques
+
     "atq" : 1,
     "def" : 1,
     "pv" : 10,
@@ -103,7 +109,7 @@ base = {
         "chandelier_recupere" : False,
         "louche_recupere" : False,
         "balai_recupere" : False,
-        "armurerie_ouverte" : True,
+        "armurerie_ouverte" : False,
         "pass" : False,
         "cle" : False,
         "passage_bibliotheque" : False,
@@ -112,10 +118,13 @@ base = {
     }
 }
 
-perso = base.copy()
+perso = base.copy() #crée une copie du dictionnaire base pour que le redémmarage (mort du joueur) soit plus simple
 
 
 monstres = {
+    '''
+    Répertorie les caractéristiques de chaque monstre
+    '''
     "fantome" : {
         "pv" : 5,
         "atq" : 1,
@@ -123,7 +132,7 @@ monstres = {
     },
     "squelette" : {
         "pv" : 20,
-        "atq" : 10,
+        "atq" : 8,
         "exp" : 10,
     },
     "rat" : {
@@ -148,7 +157,7 @@ monstres = {
     },
 }
 
-textes = [
+textes = [ # liste de tous les textes possibles
 "Vous ne vous souvenez plus de qui vous êtes,",
 "vous vous réveillez dans un manoir abandonné.",
 "Votre but est d'en sortir.",
