@@ -16,6 +16,8 @@ elif nb <= 5:
 else:
     armure = "armure_3"
 
+
+
 donjon = {
     #Range chaque salle avec:
     #- nom
@@ -74,14 +76,19 @@ donjon = {
 
     "bibliotheque" : {
         "nom" : "Bibliotheque",
-        "sorties" : ["hall", None, None, "boss"],
-        "objet" : "chapeau",
+        "sorties" : ["hall", "couloir", None, None],
+        "objet" : "potion",
         "monstre" : "sorcier",
     },
-
+    "couloir" : {
+        "nom" : "Couloir",
+        "sorties" : ["bibliotheque", None, "boss", None],
+        "objet" : None,
+        "monstre" : None,
+    },
     "boss" : {
         "nom" : "Salle du Boss",
-        "sorties" : ["bibliotheque", None, None, None],
+        "sorties" : ["couloir", None, None, None],
         "objet" : None,
         "monstre" : "oeil",
     }
@@ -101,7 +108,7 @@ base = {
     "niveau" : 1,
     "exp" : 0,
     "exp_niveau" : 5,
-    "arme" : "balai",
+    "arme" : None,
     "armure" : None,
 
     "moments_cles" : {
@@ -111,58 +118,74 @@ base = {
         "balai_recupere" : False,
         "armurerie_ouverte" : False,
         "pass" : False,
+        "ragout": False,
+        "chaussons" : False,
+        "savon" : False,
+        "tiroir" : False,
         "cle" : False,
-        "passage_bibliotheque" : False,
-        "porte_boss" : False,
-
+        "rideau" : False,
+        "potion" : False,
+        "couloir" : False,
     }
 }
 
 perso = base.copy() #crée une copie du dictionnaire base pour que le redémmarage (mort du joueur) soit plus simple
 
-
 monstres = {
-    '''
-    Répertorie les caractéristiques de chaque monstre
-    '''
+    #Répertorie les caractéristiques de chaque monstre
     "fantome" : {
         "pv" : 5,
-        "atq" : 1,
+        "atq" : 2,
         "exp" : 3,
     },
     "squelette" : {
         "pv" : 20,
-        "atq" : 8,
-        "exp" : 10,
+        "atq" : 10,
+        "exp" : 7,
     },
     "rat" : {
         "pv" : 25,
-        "atq" : 5,
-        "exp" : 15,
+        "atq" : 15,
+        "exp" : 10,
     },
     "gobelins" : {
-        "pv" : 30,
-        "atq" : 6,
-        "exp" : 20,
+        "pv" : 33,
+        "atq" : 15,
+        "exp" : 15,
     },
     "sorcier" : {
-        "pv" : 45,
-        "atq" : 8,
+        "pv" : 50,
+        "atq" : 20,
         "exp" : 50,
     },
     "oeil" : {
         "pv" : 100,
-        "atq" : 15,
+        "atq" : 25,
         "exp" : 100,
-    },
+    }
 }
 
-textes = [ # liste de tous les textes possibles
-"Vous ne vous souvenez plus de qui vous êtes,",
-"vous vous réveillez dans un manoir abandonné.",
-"Votre but est d'en sortir.",
+dialogues = [ # liste de tous les textes possibles
 
-
-
-
+#majordome
+("Oh, vous êtes réveillé.",
+"Bonjour, je suis le majordome de cette demeure."),
+("Enfin... je l'étais avant qu'il prenne le contrôle de ce manoir..",
+"Est-ce que je pourrais vous demander un service ?"),
+("Je sais qu'il se cache dans ce manoir mais je ne sais pas où,","mais vu votre carrure, je pense que vous serez capable de le vaincre."),
+"Je compte sur vous.",
+#golem
+("Votre laissez passer s'il vous plaît","Oh vous n'en avez pas, je suis désolé je ne peux pas vous laisser passer"),
+("Votre laissez passer s'il vous plaît","Très bien, vous pouvez rentrer"),
+#rat
+("Qui ose me déranger pendant que je cuisine ?","Vous avez affaire à un rat en colère !"),
+#gobelins
+"Areuh-areuh-areuh !! (On te laissera pas passer !!)",
+#maman gobelin
+("Comment avez vous pu rentrer ici ? Mes petits montaient la garde..","Attendez, vous n'auriez tout de même pas..."),
+"Prenez vous donc ce canard explosif en pleine figure",
+#sorcier
+"Vous n'auriez pas dû rentrer ici...",
+#oeil
+("Vous êtes donc venu à bout de tous mes sbires, c'est remarquable","Mais aurez vous la force nécessaire pour me vaincre ?")
 ]
